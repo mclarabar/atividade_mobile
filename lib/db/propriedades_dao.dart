@@ -17,6 +17,8 @@ class PropriedadesDao {
       listaPropriedades.add(propriedade);
     }
 
+    await Future.delayed(Duration(seconds: 3));
+
     return listaPropriedades;
 
     // Propriedade(
