@@ -1,30 +1,27 @@
 class Propriedade {
-  late String image;
-  late String nome;
-  late String tipoDeHost;
-  late String datas;
+  int? id;
+  String image;
+  String nome;
 
   Propriedade({
+    this.id,
     required this.image,
     required this.nome,
-    required this.tipoDeHost,
-    required this.datas,
   });
 
-  Propriedade.fromJson(Map<String, dynamic> json) {
-    image = json['image'];
-    nome = json['nome'];
-    tipoDeHost = json['tipoDeHost'];
-    datas = json['datas'];
+  factory Propriedade.fromJson(Map<String, dynamic> json) {
+    return Propriedade(
+      id: json['id'] as int?,
+      image: json['image'] as String,
+      nome: json['nome'] as String,
+    );
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-
-    data['image'] = this.image;
-    data['nome'] = this.nome;
-    data['tipoDeHost'] = this.tipoDeHost;
-    data['datas'] = this.datas;
-    return data;
+    return {
+      'id': id,
+      'image': image,
+      'nome': nome,
+    };
   }
 }

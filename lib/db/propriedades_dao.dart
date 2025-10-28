@@ -1,6 +1,4 @@
-
 import 'package:sqflite/sqlite_api.dart';
-
 import '../domain/propriedade.dart';
 import 'db_helper.dart';
 
@@ -16,6 +14,8 @@ class PropriedadesDao {
       Propriedade propriedade = Propriedade.fromJson(json);
       listaPropriedades.add(propriedade);
     }
+
+    await Future.delayed(Duration(seconds: 3));
 
     return listaPropriedades;
 

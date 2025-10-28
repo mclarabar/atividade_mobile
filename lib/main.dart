@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'pages/aboutUsPage.dart';
+import 'package:page_creators/pages/aboutUsPage.dart';
 
 void main(){
-  runApp(
-      MaterialApp(
-        home: AboutUsPage(),
-        debugShowCheckedModeBanner: false,
-      )
-  );
+
+    runApp(const MaterialApp(debugShowCheckedModeBanner: false, home: AboutUsPage()));
+
 }

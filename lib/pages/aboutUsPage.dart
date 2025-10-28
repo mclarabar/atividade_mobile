@@ -1,4 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:page_creators/pages/project_intent.dart';
+import 'package:page_creators/pages/statistics_section.dart';
+import '../db/propriedades_dao.dart';
+import '../domain/cancer_article.dart';
+import '../domain/propriedade.dart';
+import '../services/news_api_service.dart';
+import 'creators_section.dart';
+import 'news_section.dart';
+import 'fake_api_section.dart';
+import 'statistics_section.dart';
+
+
 
 class AboutUsPage extends StatefulWidget {
   const AboutUsPage({super.key});
@@ -8,230 +20,44 @@ class AboutUsPage extends StatefulWidget {
 }
 
 class _AboutUsPageState extends State<AboutUsPage> {
+  late Future<List<Propriedade>> futurePropriedades;
+  late Future<List<CancerArticle>> futureNews;
+
+  @override
+  void initState() {
+    super.initState();
+    futurePropriedades = PropriedadesDao().listarPropriedades();
+    futureNews = NewsApiService().fetchCancerNews();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.indigo[900],
-          title: Text(
-            'CONHECENDO OS CRIADORES',
-            style: TextStyle(color: Colors.white, fontSize: 20),
+          title: const Text(
+            'SOBRE O PROJETO',
+            style: TextStyle(color: Colors.white),
           ),
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.account_circle_rounded),
-                color: Colors.white),
-          ],
         ),
-        bottomNavigationBar: Stack(
+        backgroundColor: const Color(0xFFC49CE8),
+        body: ListView(
+          padding: const EdgeInsets.all(16.0),
           children: [
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                height: 45,
-                color: Colors.indigo[900],
-              ),
-            ),
-            ClipOval(
-              child: Container(
-                height: 80,
-                width: 1000,
+            CreatorsSection(futurePropriedades: futurePropriedades),
+            const SizedBox(height: 24),
+            NewsSection(futureNews: futureNews),
+            const SizedBox(height: 24),
+            const StatisticsSection(),
+            const SizedBox(height: 24),
+            const FakeApiSection(),
+            const SizedBox(height: 24),
+            const ProjectIntentSection(),
+            const FakeApiSection(),
+            const StatisticsSection(),
 
-                child: Row(
-                  children: [
-                    Padding(padding: EdgeInsets.only(left: 14),
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          '< Voltar',
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                        ),
-                      ),
-                    ),
-
-                  ],
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.indigo[900],
-                  borderRadius: BorderRadius.vertical(
-                      bottom: Radius.elliptical(
-                          MediaQuery.of(context).size.width, 80.0)),
-                ),
-              ),
-            ),
           ],
-        ),
-        backgroundColor: Colors.purple.shade200,
-        body: Padding(
-          padding: const EdgeInsets.only(bottom: 16),
-          child: Column(
-            children: [
-              GridView(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 16,
-                  crossAxisSpacing: 16,
-                  childAspectRatio: 0.9,
-                ),
-                children: [
-                  Stack(
-                    children: [
-                      Center(
-                        child: CircleAvatar(
-                          backgroundImage:
-                          AssetImage('assets/images/Ezequiel.png'),
-                          radius: 80,
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          margin: EdgeInsets.only(bottom: 8),
-                          color: Colors.white,
-                          child: Text(
-                            'José Ezequiel',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Stack(
-                    children: [
-                      Center(
-                        child: CircleAvatar(
-                          backgroundImage: AssetImage('assets/images/Lara.png'),
-                          radius: 80,
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          margin: EdgeInsets.only(bottom: 8),
-                          color: Colors.white,
-                          child: Text(
-                            'Lara Ivine',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Stack(
-                    children: [
-                      Center(
-                        child: CircleAvatar(
-                          backgroundImage:
-                          AssetImage('assets/images/Clara.png'),
-                          radius: 80,
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          margin: EdgeInsets.only(bottom: 8),
-                          color: Colors.white,
-                          child: Text(
-                            'Maria Clara',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Stack(
-                    children: [
-                      Center(
-                        child: CircleAvatar(
-                          backgroundImage:
-                          AssetImage('assets/images/Karla.png'),
-                          radius: 80,
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          margin: EdgeInsets.only(bottom: 8),
-                          color: Colors.white,
-                          child: Text(
-                            'Maria Karla',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Flexible(
-                child: Container(
-                  height: 200,
-                  margin: EdgeInsets.all(16),
-                  padding: EdgeInsets.all(16),
-                  color: Colors.white,
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      Text(
-                        'INTUITO DO PROJETO:',
-
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                          ' Este aplicativo foi criado com o objetivo de oferecer suporte informativo, '
-                              'educativo e preventivo a pessoas que convivem com o câncer de pulmão, além '
-                              'de promover a conscientização sobre os riscos e formas de prevenção dessa '
-                              'doença. Unindo tecnologia, ciência e acessibilidade, a proposta é transformar '
-                              'o cuidado com a saúde em algo mais próximo, interativo e eficiente. Um dos '
-                              'principais destaques do aplicativo é a ferramenta interativa de rastreio, que '
-                              'une um quiz dinâmico com elementos de jogo. Nessa atividade, o usuário responde '
-                              'a perguntas relacionadas à sua rotina, hábitos de vida e histórico familiar. Conforme '
-                              'as respostas, o sistema identifica comportamentos de risco e os apresenta de forma '
-                              'visual e lúdica, permitindo que o usuário compreenda de maneira leve, mas clara, '
-                              'quais práticas podem favorecer ou prevenir o câncer de pulmão. O objetivo é promover '
-                              'a reflexão e incentivar mudanças positivas no dia a dia de forma natural e engajadora. '
-                              'Além disso, o aplicativo oferece um acervo completo de conteúdos informativos, com resumos '
-                              'explicativos, flashcards para fixação de informações, artigos científicos atualizados, '
-                              'vídeos educativos e outros formatos acessíveis. Esses materiais são voltados tanto para quem '
-                              'está em tratamento quanto para quem deseja aprender mais sobre o tema — familiares, estudantes, '
-                              'profissionais da saúde ou pessoas que buscam prevenção. Com uma abordagem acolhedora, interativa '
-                              'e baseada em evidências, o aplicativo busca empoderar os usuários por meio do conhecimento, auxiliando '
-                              'na compreensão do câncer de pulmão, promovendo hábitos saudáveis e contribuindo para o diagnóstico '
-                              'precoce e o enfrentamento da doença. A saúde começa com a informação — e esse é o primeiro passo que '
-                              'o aplicativo ajuda você a dar.',
-
-                          textAlign: TextAlign.justify,
-
-                          maxLines: 1000
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );

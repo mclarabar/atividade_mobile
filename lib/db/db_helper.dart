@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -18,27 +17,25 @@ class DBHelper {
     String sql = '''CREATE TABLE Propriedade (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     image TEXT,
-    nome TEXT,
-    datas TEXT,
-    tipoDeHost TEXT
+    nome TEXT
 );''';
 
     await db.execute(sql);
 
     sql =
-        "INSERT INTO Propriedade (image, nome, datas, tipoDeHost) VALUES ('assets/images/Ezequiel.png', 'José Ezequiel', 'Professional Host', 'https://news.airbnb.com/');";
+        "INSERT INTO Propriedade (image, nome) VALUES ('assets/images/Ezequiel.png', 'José Ezequiel');";
     await db.execute(sql);
 
     sql =
-        "INSERT INTO Propriedade (image, nome, datas, tipoDeHost) VALUES ('assets/images/Lara.png', 'Lara Ivine', 'Superhost', 'https://cf.bstatic.com/');";
+        "INSERT INTO Propriedade (image, nome) VALUES ('assets/images/Lara.png', 'Lara Ivine');";
     await db.execute(sql);
 
     sql =
-        "INSERT INTO Propriedade (image, nome, datas, tipoDeHost) VALUES ('assets/images/Clara.png', 'Maria Clara', 'Professional Host', 'https://cf.bstatic.com/');";
+        "INSERT INTO Propriedade (image, nome) VALUES ('assets/images/Clara.png', 'Maria Clara');";
     await db.execute(sql);
 
     sql =
-        "INSERT INTO Propriedade (image, nome, datas, tipoDeHost) VALUES ('assets/images/Karla.png', 'Maria Karla', 'Superhost', 'https://cf.bstatic.com/');";
+        "INSERT INTO Propriedade (image, nome) VALUES ('assets/images/Karla.png', 'Maria Karla');";
     await db.execute(sql);
   }
 }
