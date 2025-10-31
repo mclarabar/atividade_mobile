@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:page_creators/db/dbs_helper.dart';
 import 'package:page_creators/pages/aboutUsPage.dart';
+import 'db/db_helper.dart';
 
-void main(){
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-    runApp(const MaterialApp(debugShowCheckedModeBanner: false, home: AboutUsPage()));
+  await DBHelper().exportarParaJson();
 
+  runApp(
+    const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: AboutUsPage(),
+    ),
+  );
 }
