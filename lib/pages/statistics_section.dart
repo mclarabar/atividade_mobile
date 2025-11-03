@@ -37,7 +37,7 @@ class StatisticsSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                '📊 Tipos de Câncer (Fonte: SEER - EUA)',
+                'Tipos de Câncer (Fonte: SEER - EUA)',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,

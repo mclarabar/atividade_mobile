@@ -12,7 +12,7 @@ class NewsSection extends StatelessWidget {
     return Column(
       children: [
         Text(
-          'ÚLTIMAS NOTÍCIAS SOBRE CÂNCER DE PULMÃO',
+          'NOTÍCIAS SOBRE CÂNCER DE PULMÃO',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 18,

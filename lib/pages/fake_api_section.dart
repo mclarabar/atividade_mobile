@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../services/fake_api_service.dart';
-import 'creators_gallery_page.dart';
 
 class FakeApiSection extends StatelessWidget {
   const FakeApiSection({super.key});
@@ -34,24 +33,7 @@ class FakeApiSection extends StatelessWidget {
                     color: Color(0xFF3A0CA3),
                   ),
                 ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CreatorsGalleryPage (criadores: criadores),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    'Ver todos ›',
-                    style: TextStyle(
-                      color: Color(0xFF5E17EB),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
+
               ],
             ),
             const SizedBox(height: 12),
@@ -82,7 +64,7 @@ class FakeApiSection extends StatelessWidget {
                   ),
                 ),
                 subtitle: const Text(
-                  'Integrante do Projeto Safe Lung',
+                  'Integrante do Projeto',
                   style: TextStyle(fontSize: 14, color: Colors.black54),
                 ),
               ),
