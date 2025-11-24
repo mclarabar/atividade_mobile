@@ -21,7 +21,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
   @override
   void initState() {
     super.initState();
-    futureCriadores = FakeApiService().fetchCreatorsOnline();
+    //futureCriadores = FakeApiService().fetchCreatorsOnline();
     futureNews = NewsApiService().fetchCancerNews();
   }
 
@@ -32,7 +32,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
         appBar: AppBar(
           backgroundColor: Colors.indigo[900],
           title: const Text(
-            'SOBRE O PROJETO',
+            'CONHECENDO OS CRIADORES',
             style: TextStyle(color: Colors.white),
           ),
         ),
@@ -41,74 +41,12 @@ class _AboutUsPageState extends State<AboutUsPage> {
         body: ListView(
           padding: const EdgeInsets.all(16.0),
           children: [
-            const Text(
-              'CRIADORES',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 12),
-
-            FutureBuilder<List<Map<String, dynamic>>>(
-              future: futureCriadores,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-
-                if (snapshot.hasError) {
-                  return Center(child: Text('Erro: ${snapshot.error}'));
-                }
-
-                final criadores = snapshot.data ?? [];
-
-                return SizedBox(
-                  height: 180,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: criadores.length,
-                    itemBuilder: (context, index) {
-                      final c = criadores[index];
-                      final isNetworkImage = c['image'].toString().startsWith('http');
-
-                      return Container(
-                        width: 140,
-                        margin: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              radius: 45,
-                              backgroundImage: isNetworkImage
-                                  ? NetworkImage(c['image'])
-                                  : AssetImage(c['image']) as ImageProvider,
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              c['nome'],
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                );
-              },
-            ),
-
-            const SizedBox(height: 24),
-
-            NewsSection(futureNews: futureNews),
-
-            const SizedBox(height: 24),
-
-            const StatisticsSection(),
-            const SizedBox(height: 24),
             const FakeApiSection(),
             const SizedBox(height: 24),
             const ProjectIntentSection(),
+            const SizedBox(height: 24),
+            NewsSection(futureNews: futureNews),
+            const StatisticsSection(),
           ],
         ),
       ),

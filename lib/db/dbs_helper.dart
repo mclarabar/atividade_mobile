@@ -15,6 +15,6 @@ extension DBExport on DBHelper {
     final file = File('${directory.path}/db.json');
     await file.writeAsString(jsonEncode(jsonData));
 
-    print('✅ Arquivo JSON exportado em: ${file.path}');
+    print('Arquivo JSON exportado em: ${file.path}');
   }
 }

@@ -2,7 +2,7 @@ import '../domain/propriedade.dart';
 import 'package:flutter/material.dart';
 
 class CardPropriedade extends StatefulWidget {
-  Propriedade propriedade;
+  Criadores propriedade;
 
   CardPropriedade({super.key, required this.propriedade});
 
@@ -15,7 +15,7 @@ class _CardPropriedadeState extends State<CardPropriedade> {
   //   return widget.urlImage;
   // }
 
-  Propriedade get propriedade => widget.propriedade;
+  Criadores get propriedade => widget.propriedade;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +37,7 @@ class _CardPropriedadeState extends State<CardPropriedade> {
             color: Colors.white,
             child: Text(
               widget.propriedade.nome,
+
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -44,6 +45,7 @@ class _CardPropriedadeState extends State<CardPropriedade> {
             ),
           ),
         ),
+        Text(widget.propriedade.local),
       ],
     ),
     );

@@ -15,27 +15,28 @@ class DBHelper {
 
   Future<void> onCreate(Database db, int version) async {
     String sql = '''CREATE TABLE Propriedade (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    image TEXT,
-    nome TEXT
-);''';
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        image TEXT,
+        nome TEXT,
+        local TEXT
+    );''';
 
     await db.execute(sql);
 
     sql =
-        "INSERT INTO Propriedade (image, nome) VALUES ('assets/images/Ezequiel.png', 'José Ezequiel');";
+        "INSERT INTO Propriedade (image, nome, local) VALUES ('assets/images/Ezequiel.png', 'José Ezequiel', 'Craibas');";
     await db.execute(sql);
 
     sql =
-        "INSERT INTO Propriedade (image, nome) VALUES ('assets/images/Lara.png', 'Lara Ivine');";
+        "INSERT INTO Propriedade (image, nome, local) VALUES ('assets/images/Lara.png', 'Lara Ivine', 'Junqueiro');";
     await db.execute(sql);
 
     sql =
-        "INSERT INTO Propriedade (image, nome) VALUES ('assets/images/Clara.png', 'Maria Clara');";
+        "INSERT INTO Propriedade (image, nome, local) VALUES ('assets/images/Clara.png', 'Maria Clara', 'Arapiraca');";
     await db.execute(sql);
 
     sql =
-        "INSERT INTO Propriedade (image, nome) VALUES ('assets/images/Karla.png', 'Maria Karla');";
+        "INSERT INTO Propriedade (image, nome, local) VALUES ('assets/images/Karla.png', 'Maria Karla', 'Limoeiro de Anadia');";
     await db.execute(sql);
   }
 }

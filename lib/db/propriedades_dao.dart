@@ -3,15 +3,15 @@ import '../domain/propriedade.dart';
 import 'db_helper.dart';
 
 class PropriedadesDao {
-  Future<List<Propriedade>> listarPropriedades() async {
-    List<Propriedade> listaPropriedades = [];
+  Future<List<Criadores>> listarPropriedades() async {
+    List<Criadores> listaPropriedades = [];
     Database db = await DBHelper().initDB();
 
     String sql = 'SELECT * FROM PROPRIEDADE;';
     var listResult = await db.rawQuery(sql);
 
     for (var json in listResult) {
-      Propriedade propriedade = Propriedade.fromJson(json);
+      Criadores propriedade = Criadores.fromJson(json);
       listaPropriedades.add(propriedade);
     }
 

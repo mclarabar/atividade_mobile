@@ -5,11 +5,11 @@ import '../domain/propriedade.dart';
 import '../widget/card_propriedade.dart';
 
 class CreatorsSection extends StatelessWidget {
-  const CreatorsSection({super.key, required Future<List<Propriedade>> futurePropriedades});
+  const CreatorsSection({super.key, required Future<List<Criadores>> futurePropriedades});
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Propriedade>>(
+    return FutureBuilder<List<Criadores>>(
       future: PropriedadesDao().listarPropriedades(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {

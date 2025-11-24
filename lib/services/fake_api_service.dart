@@ -8,30 +8,41 @@ class FakeApiService {
 
   final String baseUrl = 'https://my-json-server.typicode.com/mclarabar/fake_api';
 
-  Future<List<Map<String, dynamic>>> fetchCreatorsOnline() async {
+  Future<List<Criadores>> fetchCreatorsOnline() async {
     try {
+      List<Criadores> lista = [];
       final response = await _dio.get('$baseUrl/criadores');
 
       if (response.statusCode == 200) {
         print('Dados carregados da API online.');
-        return List<Map<String, dynamic>>.from(response.data);
+        for(var json in response.data){
+          lista.add(Criadores.fromJson(json));
+        }
+        return lista;
       } else {
         throw Exception('Erro ao carregar criadores da API.');
       }
     } catch (e) {
       print('Erro ao acessar API online: $e');
       print('Carregando dados do banco local como alternativa...');
-      return await fetchCreatorsFromDatabase();
+      return fetchCreatorsFromDatabase();
     }
   }
 
-  Future<List<Map<String, dynamic>>> fetchCreatorsFromDatabase() async {
-    final List<Propriedade> propriedades = await _dao.listarPropriedades();
+  // Future<List<Map<String, dynamic>>> fetchCreatorsFromDatabase2() async {
+  //   final List<Criadores> propriedades = await _dao.listarPropriedades();
+  //
+  //
+  //   return propriedades.map((p) => {
+  //     'id': p.id,
+  //     'image': p.image ?? '',
+  //     'nome': p.nome ?? '',
+  //     'local': p.local ?? '',
+  //   }).toList();
+  // }
 
-    return propriedades.map((p) => {
-      'id': p.id,
-      'image': p.image ?? '',
-      'nome': p.nome ?? '',
-    }).toList();
+  Future<List<Criadores>> fetchCreatorsFromDatabase() async {
+    final List<Criadores> propriedades = await _dao.listarPropriedades();
+    return propriedades;
   }
 }
